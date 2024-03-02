@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{ if eq .Type "blog" }}{{ if not .Params.menu }}
 <h1>{{ .Title }}</h1>
 <p>
   <i>
@@ -8,10 +7,30 @@
     </time>
   </i>
 </p>
-{{ end }}{{ end }}
+
 <content>
   {{ .Content }}
 </content>
+
+{{ if eq .Section "posts" }}
+    <script src="https://giscus.app/client.js"
+            data-repo="n0vad3v/blog-comments"
+            data-repo-id="R_kgDOLH6FXw"
+            data-category="Ideas"
+            data-category-id="DIC_kwDOLH6FX84Cclxr"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="light_tritanopia"
+            data-lang="en"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async>
+    </script>
+{{ end }}
+
 <p>
   {{ range (.GetTerms "tags") }}
   <a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
